@@ -1,0 +1,72 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "get",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "_value",
+						"type": "string"
+					}
+				],
+				"name": "set",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"logic/logic_v2.sol": "Logic_V1"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"logic/logic_v2.sol": {
+			"keccak256": "0x64cd2fb117015a8cdfda4938e24e92c1188c0c7f3894b69e6c04e1c035b1f2be",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e227a690bf01d4a5f1a64fd28b2b797c275ad43331c0eb80c669cae80d06f839",
+				"dweb:/ipfs/QmU1RamFLCgW8YP6KbaCjeVn9ryiPWZyfL63AE1pL8M7rX"
+			]
+		}
+	},
+	"version": 1
+}
