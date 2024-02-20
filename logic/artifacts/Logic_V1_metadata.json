@@ -10,9 +10,9 @@
 				"name": "get",
 				"outputs": [
 					{
-						"internalType": "string",
+						"internalType": "uint256",
 						"name": "",
-						"type": "string"
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -21,9 +21,22 @@
 			{
 				"inputs": [
 					{
-						"internalType": "string",
+						"internalType": "uint256",
+						"name": "_initialValue",
+						"type": "uint256"
+					}
+				],
+				"name": "initialize",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
 						"name": "_value",
-						"type": "string"
+						"type": "uint256"
 					}
 				],
 				"name": "set",
@@ -45,7 +58,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"logic/logic_v2.sol": "Logic_V1"
+			"logic/logic_v1.sol": "Logic_V1"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -59,12 +72,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"logic/logic_v2.sol": {
-			"keccak256": "0x64cd2fb117015a8cdfda4938e24e92c1188c0c7f3894b69e6c04e1c035b1f2be",
+		"logic/logic_v1.sol": {
+			"keccak256": "0x0607f603bc1fd655eb79bcd3a127be9083699caed241aceb0dac0ad61e2f92e9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://e227a690bf01d4a5f1a64fd28b2b797c275ad43331c0eb80c669cae80d06f839",
-				"dweb:/ipfs/QmU1RamFLCgW8YP6KbaCjeVn9ryiPWZyfL63AE1pL8M7rX"
+				"bzz-raw://93cb0da38ef502842c1dd2d9a1465a702d5f4f6029cf56a3d89485017fb2bd9c",
+				"dweb:/ipfs/QmQmBMrKguzHVLUyogATG3Am37cSumKwJpgLoMp6Hr9nmJ"
 			]
 		}
 	},
