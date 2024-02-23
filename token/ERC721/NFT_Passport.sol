@@ -7,10 +7,18 @@ import {ERC721URIStorageUpgradeable} from "@openzeppelin/contracts-upgradeable/t
 import {AccessControlUpgradeable} from "@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol";
 
 contract NFTPassportIdentity is ERC721URIStorageUpgradeable, AccessControlUpgradeable {
+
+    function supportsInterface(
+        bytes4 interfaceId
+    ) public view virtual override(ERC721URIStorageUpgradeable, AccessControlUpgradeable) returns (bool) {
+        return AccessControlUpgradeable.supportsInterface(interfaceId) || ERC721URIStorageUpgradeable.supportsInterface(interfaceId);
+    }
+
     using SafeMath for uint256;
-    using SafeERC20 for IERC20;
+    // using SafeERC20 for IERC20;
 
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
+    uint256 internal tokenId;
 
     // Define a struct to represent passport identity
     struct PassportIdentity {
@@ -30,18 +38,20 @@ contract NFTPassportIdentity is ERC721URIStorageUpgradeable, AccessControlUpgrad
     function initialize() public initializer {
         __ERC721_init("NFT Passport Identity", "NFTPI");
         __AccessControl_init();
-        _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
-        _setupRole(MINTER_ROLE, _msgSender());
+        tokenId++;
+        _grantRole(DEFAULT_ADMIN_ROLE, _msgSender());
+        _grantRole(MINTER_ROLE, _msgSender());
     }
 
     // Mint NFT for passport identity
-    function mintPassportIdentity(address holder, string memory name, string memory nationality, uint256 dateOfBirth, string memory tokenURI) external returns (uint256 tokenId) {
+    function mintPassportIdentity(address holder, string memory name, string memory nationality, uint256 dateOfBirth, string memory _tokenURI) external returns (uint256) {
         require(hasRole(MINTER_ROLE, _msgSender()), "NFT Passport Identity: must have minter role to mint");
-        tokenId = totalSupply() + 1;
+        tokenId++;
         _safeMint(holder, tokenId);
-        _setTokenURI(tokenId, tokenURI);
+        _setTokenURI(tokenId, _tokenURI);
         passportIdentities[tokenId] = PassportIdentity(name, nationality, dateOfBirth, holder);
         emit PassportIdentityCreated(tokenId, holder, name, nationality, dateOfBirth);
+        return tokenId;
     }
 
     // Override _baseURI function to return the base URI for token URIs
@@ -50,8 +60,8 @@ contract NFTPassportIdentity is ERC721URIStorageUpgradeable, AccessControlUpgrad
     }
 
     // Override tokenURI function to concatenate base URI and token-specific URI
-    function tokenURI(uint256 tokenId) public view override returns (string memory) {
-        require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
-        return string(abi.encodePacked(_baseURI(), _tokenURI(tokenId)));
+    function tokenURI(uint256 _tokenId) public view override returns (string memory) {
+        // require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
+        return string(abi.encodePacked(_baseURI(), tokenURI(_tokenId)));
     }
 }
